@@ -25,8 +25,9 @@ P += $(wildcard lib/*.py)
 S  = $(C) $(H) $(D) $(P)
 
 # all
-.PHONY: all run test
-all: $(S)
+.PHONY: all build run test
+all: build
+build: $(S)
 	$(BLD)
 run: $(S)
 	$(RUN) -- $(P)

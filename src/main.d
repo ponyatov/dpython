@@ -3,6 +3,7 @@ import std.stdio;
 import parser;
 
 import std.range : enumerate;
+import std.file : readText;
 
 void main(string[] args) {
     arg(0, args[0]);
