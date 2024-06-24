@@ -16,6 +16,27 @@ BLD    = $(DUB) build --compiler=$(DC)
 # package
 DMD_DEB = dmd_$(DMD_VER)-0_amd64.deb
 
+# src
+C += $(wildcard src/*.c*)
+H += $(wildcard inc/*.h*)
+D += $(wildcard src/*.d)
+P += $(wildcard lib/*.py)
+
+# all
+.PHONY: all run
+all: $(D)
+	$(BLD)
+run: $(D) $(P)
+	${RUN)
+
+# format
+.PHONY: format
+format: tmp/format_c tmp/format_d
+tmp/format_c: $(C) $(H)
+	$(CF) -i $? && touch $@
+tmp/format_d: $(D)
+	$(RUN) dfmt -- -i $? && touch $@
+
 # install
 .PHONY: install update ref gz
 install: ref gz $(DUB)
@@ -23,7 +44,12 @@ install: ref gz $(DUB)
 update:
 	sudo apt update
 	sudo apt install -uy `cat apt.txt`
-ref:
+ref: \
+	ref/micropython/README.md
+
+ref/micropython/README.md:
+	git clone --depth 1 https://github.com/micropython/micropython.git ref/micropython
+
 gz:
 
 $(DUB): $(DISTR)/Linux/tools/$(DMD_DEB)

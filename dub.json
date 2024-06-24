@@ -1,0 +1,10 @@
+{
+    "name":          "dython",
+    "description":   "uPython implementation",
+    "authors":      ["Dmitry Ponyatov <dponyatov@gmail.com>"],
+    "copyright":     "Copyright © 2024, Dmitry Ponyatov <dponyatov@gmail.com>",
+    "license":       "MIT",
+    "targetPath":    "bin",
+    "targetType":    "executable",
+    "dependencies": {}
+}
