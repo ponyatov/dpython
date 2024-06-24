@@ -12,6 +12,7 @@ DMD    = /usr/bin/dmd
 DC     = $(DMD)
 RUN    = $(DUB) run   --compiler=$(DC)
 BLD    = $(DUB) build --compiler=$(DC)
+TEST   = $(DUB) test  --compiler=$(DC)
 
 # package
 DMD_DEB = dmd_$(DMD_VER)-0_amd64.deb
@@ -21,13 +22,16 @@ C += $(wildcard src/*.c*)
 H += $(wildcard inc/*.h*)
 D += $(wildcard src/*.d)
 P += $(wildcard lib/*.py)
+S  = $(C) $(H) $(D) $(P)
 
 # all
-.PHONY: all run
-all: $(D)
+.PHONY: all run test
+all: $(S)
 	$(BLD)
-run: $(D) $(P)
-	${RUN)
+run: $(S)
+	$(RUN) -- $(P)
+test: $(S)
+	$(TEST)
 
 # format
 .PHONY: format

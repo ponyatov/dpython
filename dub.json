@@ -3,6 +3,7 @@
     "description":   "uPython implementation",
     "authors":      ["Dmitry Ponyatov <dponyatov@gmail.com>"],
     "copyright":     "Copyright © 2024, Dmitry Ponyatov <dponyatov@gmail.com>",
+    "homepage":      "https://github.com/ponyatov/dython",
     "license":       "MIT",
     "targetPath":    "bin",
     "targetType":    "executable",
